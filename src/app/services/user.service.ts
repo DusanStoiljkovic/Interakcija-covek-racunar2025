@@ -18,7 +18,7 @@ export class UserService {
         return JSON.parse(localStorage.getItem('users') || '[]');
     }
 
-    static findUserByEmail(email:string) {
+    static findUserByEmail(email: string) {
         const users = this.getUsers();
         const selectedUser = users.find(u => u.email === email);
 
