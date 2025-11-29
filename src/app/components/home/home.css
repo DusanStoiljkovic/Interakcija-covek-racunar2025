@@ -1,0 +1,14 @@
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.movie-card {
+  width: 15rem;
+}
+
+.description {
+  font-size: 0.9rem;
+}
