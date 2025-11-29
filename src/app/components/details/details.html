@@ -1,1 +1,86 @@
-<p>details works!</p>
+@if (movie()) {
+    <div class="container py-4">
+  <div class="row">
+    <!-- LEFT COLUMN: POSTER -->
+    <div class="col-md-4">
+      <div class="card shadow-sm">
+        <img 
+          [src]="movie().poster" 
+          [alt]="movie().title" 
+          class="card-img-top"
+        >
+
+        <div class="card-body text-center">
+          <h5 class="card-title mb-3">{{ movie().title }}</h5>
+          <a class="btn btn-primary w-100 mb-2" [routerLink]="['/movies']">
+            <i class="fa-solid fa-arrow-left"></i> Back to Movies
+          </a>
+          <button class="btn btn-success w-100">
+            <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: DETAILS -->
+    <div class="col-md-8">
+      <h2 class="mb-3">{{ movie().title }}</h2>
+      <h5 class="text-muted fst-italic mb-3">{{ movie().originalTitle }}</h5>
+
+      <!-- DIRECTOR -->
+      <p class="mb-2">
+        <strong>Director:</strong>
+        <span class="text-primary">{{ movie().director.name }}</span>
+      </p>
+
+      
+      <!-- GENRES -->
+      <p class="mb-3">
+        <strong>Genres:</strong>
+        @for (genre of movie().movieGenres; track genre.movieGenreId) {
+        <span>
+          <span class="badge bg-secondary me-1">{{ genre.genre.name }}</span>
+        </span>
+        } @empty {
+            <span> There are not genres.</span>
+        }
+      </p>   
+
+      <!-- ACTORS -->
+      <div class="mb-4">
+        <strong>Actors:</strong>
+        @for (actors of movie().movieActors; track actors.movieActorId) {
+           <span class="me-1">
+            <span class="badge bg-primary">{{ actors.actor.name }}</span>
+          </span>
+        } @empty {
+            <span> There are not actors.</span>
+        }
+      </div>
+
+      <!-- SHORT DESCRIPTION -->
+      <h5>Short Description</h5>
+      <p class="text-muted">{{ movie().shortDescription }}</p>
+
+      <!-- FULL DESCRIPTION -->
+      <h5>Description</h5>
+      <p>{{ movie().description }}</p>
+      <!-- EXTRA INFO -->
+      <div class="mt-4">
+        <p><strong>Runtime:</strong> {{ movie().runTime }} min</p>
+        <p><strong>Starts:</strong> {{ movie().startDate | date }}</p>
+        <p><strong>Corporate ID:</strong> {{ movie().corporateId }}</p>
+        <p><strong>Internal ID:</strong> {{ movie().internalId }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+@if (!movie()) {
+<!-- LOADING STATE -->
+<div class="text-center py-5">
+  <div class="spinner-border text-primary"></div>
+  <p class="mt-3">Loading movie...</p>
+</div>
+}

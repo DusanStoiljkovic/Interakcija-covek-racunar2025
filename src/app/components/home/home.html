@@ -7,7 +7,7 @@
 
 <div class="movies">
   @for (movie of movies(); track $index) {
-    <div class="card movie-card">
+    <div class="card">
       <img 
         class="card-img-top" 
         [src]="movie.poster" 
@@ -21,21 +21,17 @@
           {{ movie.shortDescription }}
         </p>
 
-        <div class="card-footer btn-group">
-          <a 
-            class="btn btn-primary" 
-            [routerLink]="['/movies', movie.shortUrl]"
-          >
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            Details
-          </a>
-
-          <button class="btn btn-success btn-sm">
-            <i class="fa-solid fa-cart-shopping"></i>
-            Add To Cart
-          </button>
-        </div>
       </div>
+
+      <div class="card-footer btn-group">
+          <a class="btn btn-sm btn-primary" [routerLink]="`/details/${movie.shortUrl}`">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
+          </a>
+          <div class="btn btn-sm btn-success">
+              <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+          </div>
+      </div>
+      
     </div>
   }
 </div>

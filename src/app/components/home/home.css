@@ -1,14 +1,16 @@
 .movies {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
 }
 
-.movie-card {
-  width: 15rem;
+.card {
+    max-width: 15rem;
 }
 
-.description {
-  font-size: 0.9rem;
+.input-group {
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
 }
